@@ -89,6 +89,165 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
+        /* Nueva sección Quién Soy */
+        .about-section {
+            padding: 100px 0;
+            background: linear-gradient(45deg, #ffffff 0%, #f8f9fa 100%);
+            position: relative;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue), var(--light-blue));
+        }
+
+        .about-content {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(40, 81, 163, 0.05), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .about-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+            border-radius: 2px;
+        }
+
+        .about-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            background: white;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(10, 31, 68, 0.2);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .photo-card:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        .photo-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .photo-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .stats-section {
+            background: var(--primary-blue);
+            color: white;
+            padding: 50px 0;
+            margin-top: 50px;
+            border-radius: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
         .brand-pillars {
             padding: 100px 0;
             background: linear-gradient(45deg, #f8f9fa 0%, #ffffff 100%);
@@ -131,7 +290,7 @@
         .pillar-icon {
             width: 120px;
             height: 120px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--light-blue));
+            background: #0a1f44;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -142,6 +301,7 @@
             position: relative;
             animation: pulse 3s infinite;
         }
+
 
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(10, 31, 68, 0.7); }
@@ -319,6 +479,9 @@
             .hero-subtitle { font-size: 1.2rem; }
             .pitch-quote { font-size: 1.8rem; }
             .pillar-card { padding: 30px 20px; }
+            .about-title { font-size: 2rem; }
+            .about-content { padding: 40px 30px; }
+            .photo-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -346,7 +509,7 @@
                         Transformando ideas en resultados excepcionales a través de la innovación, la pasión y la excelencia profesional.
                     </p>
                     <div class="hero-cta">
-                        <a href="#pillars" class="btn-custom me-3">
+                        <a href="#about" class="btn-custom me-3">
                             <i class="fas fa-arrow-down me-2"></i>
                             Conoce más
                         </a>
@@ -354,6 +517,97 @@
                             <i class="fas fa-envelope me-2"></i>
                             Contacto
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Quién Soy -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about-text">
+                            <h2 class="about-title">
+                                <i class="fas fa-user-circle me-3"></i>
+                                Quién Soy
+                            </h2>
+                            <p class="about-description">
+                                Soy <strong>Richard Suárez</strong>, un apasionado Ingeniero en Sistemas con experiencia transformando ideas en soluciones tecnológicas innovadoras. Mi enfoque se centra en el desarrollo de aplicaciones robustas y escalables que generen valor real para las organizaciones.
+                            </p>
+                            <p class="about-description">
+                                Mi trayectoria profesional se ha forjado en el mundo del desarrollo backend, donde he perfeccionado mis habilidades en <strong>Java</strong>, <strong>.NET Core</strong> y <strong>Angular</strong>. Cada proyecto es una oportunidad para superar límites y crear soluciones que marquen la diferencia.
+                            </p>
+                            <p class="about-description">
+                                Más allá de la tecnología, soy una persona que valora profundamente la <strong>familia</strong> y la <strong>fe</strong>. Estos pilares fundamentales me impulsan a ser mejor cada día, tanto en lo personal como en lo profesional.
+                            </p>
+                        </div>
+
+                        <!-- Mini estadísticas -->
+                        <div class="stats-section">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <span class="stat-number">3+</span>
+                                        <div class="stat-label">Años de Experiencia</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <span class="stat-number">15+</span>
+                                        <div class="stat-label">Proyectos Completados</div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-item">
+                                        <span class="stat-number">5+</span>
+                                        <div class="stat-label">Tecnologías Dominadas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="photo-grid">
+                            <!-- Foto 1 - Profesional -->
+                            <div class="photo-card">
+                                <img src="richard.png" alt="Richard en el trabajo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <div class="photo-title">Vida Profesional</div>
+                                    <div class="photo-description">Desarrollando soluciones innovadoras que transforman procesos empresariales</div>
+                                </div>
+                            </div>
+
+                            <!-- Foto 2 - Familiar -->
+                            <div class="photo-card">
+                                <img src="BODA.jpg" alt="Richard con familia" loading="lazy">
+                                <div class="photo-overlay">
+                                    <div class="photo-title">Deuteronomio 6,5</div>
+                                    <div class="photo-description">Amarás a Yavé, tu Dios, con todo tu corazón, con toda tu alma y con todas tus fuerzas.</div>
+                                </div>
+                            </div>
+
+                            <!-- Foto 3 - Aprendizaje -->
+                            <div class="photo-card">
+                                <img src="familia.jpeg" alt="Richard estudiando" loading="lazy">
+                                <div class="photo-overlay">
+                                    <div class="photo-title">Mi Familia</div>
+                                    <div class="photo-description">El motor que me impulsa a ser mejor cada día</div>
+                                </div>
+                            </div>
+
+                            <!-- Foto 4 - Liderazgo -->
+                            <div class="photo-card">
+                                <img src="docencia.jpeg" alt="Richard en equipo" loading="lazy">
+                                <div class="photo-overlay">
+                                    <div class="photo-title">Docencia</div>
+                                    <div class="photo-description">Fomentando la colaboración y el crecimiento conjunto</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -372,44 +626,49 @@
             
             <div class="row g-4">
                 <!-- Identidad -->
-                <div class="col-lg-4">
-                    <div class="pillar-card">
-                        <div class="pillar-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3 class="pillar-title">Mi Identidad</h3>
-                        <div class="pillar-content">
-                            <p><strong>¿Qué me mueve?</strong></p>
-                            <p>Mi pasión por resolver problemas complejos y generar impacto positivo en las organizaciones me impulsa cada día.</p>
-                            
-                            <p><strong>¿Qué me inspira?</strong></p>
-                            <p>La innovación tecnológica y la capacidad de transformar desafíos en oportunidades de crecimiento.</p>
-                            
-                            <p><strong>Mis fortalezas:</strong></p>
-                            <p>Liderazgo estratégico, pensamiento analítico, comunicación efectiva y adaptabilidad al cambio.</p>
-                            
-                            <p><strong>Mis valores:</strong></p>
-                            <p>Integridad, excelencia, colaboración e innovación constante.</p>
-                        </div>
-                    </div>
-                </div>
+               <div class="col-lg-4">
+  <div class="pillar-card">
+    <div class="pillar-icon">
+      <!-- Aquí pones tu logo -->
+      <img src="corazon.jpg" alt="Mi Logo Personal" style="width:80px; height:auto;">
+    </div>
+    <h3 class="pillar-title">Mi Identidad</h3>
+    <div class="pillar-content">
+      <p><strong>¿Qué me mueve?</strong></p>
+      <p>Dios. Mi fe es la base que guía todas mis acciones y decisiones.</p>
+
+      <p><strong>¿Qué me inspira?</strong></p>
+      <p>Mi familia. Ellos son mi mayor motor y la razón por la que busco ser mejor cada día.</p>
+
+      <p><strong>Mis fortalezas:</strong></p>
+      <p>Determinación, innovación, perseverancia, liderazgo.</p>
+
+      <p><strong>Oportunidades de mejora:</strong></p>
+      <p>Fortalecer mis habilidades en diseño y gestión de proyectos tecnológicos.</p>
+
+      <p><strong>Mis valores:</strong></p>
+      <p>Respeto, honestidad, compromiso.</p>
+    </div>
+  </div>
+</div>
+
 
                 <!-- Herramientas -->
                 <div class="col-lg-4">
                     <div class="pillar-card">
                         <div class="pillar-icon">
-                            <i class="fas fa-cog"></i>
+                                  <img src="codigo.png" alt="Mi Logo Personal" style="width:80px; height:auto;">
                         </div>
                         <h3 class="pillar-title">Mis Herramientas</h3>
-                        <div class="pillar-content">
-                            <p><strong>Habilidades técnicas:</strong></p>
-                            <p>Gestión de proyectos, análisis de datos, marketing digital, desarrollo de estrategias comerciales.</p>
-                            
-                            <p><strong>Conocimientos:</strong></p>
-                            <p>Metodologías ágiles, transformación digital, business intelligence, gestión del cambio organizacional.</p>
-                            
-                            <p><strong>Experiencia:</strong></p>
-                            <p>+8 años liderando equipos multidisciplinarios y gestionando proyectos de alto impacto en diferentes industrias.</p>
+                       <div class="pillar-content">
+                        <p><strong>Habilidades técnicas:</strong></p>
+                        <p>Desarrollo Backend con Java y .NET, integración de sistemas, optimización de procesos.</p>
+
+                        <p><strong>Conocimientos:</strong></p>
+                        <p>Metodologías ágiles, arquitectura de software, buenas prácticas de desarrollo.</p>
+
+                        <p><strong>Experiencia:</strong></p>
+                        <p>Software developer con sólida trayectoria participando en proyectos tecnológicos de alto impacto.</p>
                         </div>
                     </div>
                 </div>
@@ -417,19 +676,16 @@
                 <!-- Diferenciador -->
                 <div class="col-lg-4">
                     <div class="pillar-card">
-                        <div class="pillar-icon">
-                            <i class="fas fa-lightbulb"></i>
+                        <div class="pillar-icon" style="background-color: #0a1f44;">
+                                  <img src="manos.png" alt="Mi Logo Personal" style="width:70px; height:auto;">
                         </div>
                         <h3 class="pillar-title">Mi Diferenciador</h3>
                         <div class="pillar-content">
                             <p><strong>¿Qué me hace sobresalir?</strong></p>
-                            <p>Mi capacidad única de combinar visión estratégica con ejecución práctica, conectando equipos diversos hacia objetivos comunes.</p>
-                            
+                            <p>Soy una persona motivadora que fomenta el trabajo en equipo y crea ambientes de colaboración positivos.</p>
+
                             <p><strong>¿Qué me hace especial?</strong></p>
-                            <p>Mi enfoque humanizado de la tecnología y mi habilidad para simplificar conceptos complejos, haciendo accesible la innovación para todos.</p>
-                            
-                            <p><strong>Mi propuesta de valor:</strong></p>
-                            <p>Acelero el crecimiento organizacional un 40% promedio implementando soluciones innovadoras que optimizan procesos y potencian el talento humano.</p>
+                            <p>Mi capacidad de inspirar a otros, integrar distintas perspectivas y mantener el enfoque en los objetivos comunes.</p>
                         </div>
                     </div>
                 </div>
@@ -445,10 +701,10 @@
                     <div class="text-center">
                         <i class="fas fa-quote-left fa-3x mb-4 opacity-50"></i>
                         <blockquote class="pitch-quote">
-                            "Ingeniero en Sistemas con más de 3 años de experiencia en desarrollo web y de escritorio, especializado en Angular, .NET Core y Java. Proactivo y autodidacta, con capacidad para resolver problemas bajo presión, adaptarme a entornos cambiantes y contribuir al éxito de proyectos ágiles mediante soluciones escalables y eficientes."
+                            "Es Feliz quién nada retiene para sí."
                         </blockquote>
                         <div class="mt-4">
-                            <h4 class="fw-light">— Mi Elevator Pitch —</h4>
+                            <h4 class="fw-light">— San Francisco de Asís —</h4>
                         </div>
                     </div>
                 </div>
@@ -497,87 +753,3 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Smooth scrolling para los enlaces
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Animaciones al hacer scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Aplicar animaciones a las tarjetas
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.pillar-card, .tip-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(50px)';
-                card.style.transition = `all 0.6s ease ${index * 0.1}s`;
-                observer.observe(card);
-            });
-        });
-
-        // Efecto de escritura para el elevator pitch
-        function typeWriter() {
-            const pitch = document.querySelector('.pitch-quote');
-            const text = pitch.textContent;
-            pitch.textContent = '';
-            pitch.style.opacity = '1';
-            
-            let i = 0;
-            function type() {
-                if (i < text.length) {
-                    pitch.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(type, 30);
-                }
-            }
-            
-            // Iniciar cuando el elemento esté visible
-            const pitchObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setTimeout(type, 500);
-                        pitchObserver.unobserve(entry.target);
-                    }
-                });
-            });
-            
-            pitchObserver.observe(pitch);
-        }
-
-        // Inicializar efectos
-        document.addEventListener('DOMContentLoaded', typeWriter);
-
-        // Efecto parallax suave
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const shapes = document.querySelectorAll('.shape');
-            shapes.forEach((shape, index) => {
-                const speed = 0.5 + (index * 0.1);
-                shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
-            });
-        });
-    </script>
-</body>
-</html>
